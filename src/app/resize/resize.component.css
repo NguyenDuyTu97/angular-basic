@@ -1,0 +1,29 @@
+.container {
+    display:flex;
+    justify-content:flex-start;
+    flex-direction: row;
+}
+  
+.div1 {
+    position: relative;
+    width:30%;
+    height:20vh;
+    background: lightblue;
+    flex-grow:0;
+}
+  
+.div2 {
+    position: relative;
+    width:30%;
+    height:20vh;
+    background: green;
+    flex-grow:0;
+}
+  
+.div3 {
+    position: relative;
+    width:30%;
+    height:20vh;
+    background: pink;
+    flex-grow:0;
+}

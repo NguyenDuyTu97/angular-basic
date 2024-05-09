@@ -1,0 +1,35 @@
+<h2>Products</h2>
+<div *ngFor="let product of products">
+  <a
+    title="{{ product.name }} details"
+    [routerLink]="['/products', product.id]"
+  >
+    {{ product.name }}
+  </a>
+
+  <p *ngIf="product.description">Description: {{ product.description }}</p>
+
+  <div>
+    <button (click)="share(product.name)">Share</button>
+  </div>
+  <app-product-alert [product1]="product" (notify)="onNotify($event)">
+  </app-product-alert>  
+</div>
+
+<div>
+  <h3>User information</h3>
+  <p>{{ user.name }} - {{ user.age }} - {{ user.address }}</p>
+</div>
+
+<div>
+  <!-- <input #nameInput name="name"/> -->
+
+  <!-- <app-toggle [checked]="isChecked" (checkedChange)="onChangeCheckedT($event)"></app-toggle> -->
+
+  <!-- toggleComp is instance of app-toggle component -->
+  <app-toggle #toggleComp [(checked)]="isChecked"></app-toggle>
+
+  <!-- <button (click)="toggleComp.toggle()">Toggle</button> -->
+</div>
+
+

@@ -1,0 +1,17 @@
+<h2>Cart - product list</h2>
+
+<div *ngIf="items?.length > 0">
+  <div *ngFor="let item of items">
+    <p>{{ item.name }} - {{ item.price }}</p>
+  </div>
+</div>
+
+<div>
+  <input type="text" #myInput [disabled]="inputEnable" />
+  <button (click)="logInputValue(myInput)" class="btn-warning" [class.warning] ="isWarning">Log Value</button>
+  <button (click)="isWarning = !isWarning">Toggle warning</button>
+</div>
+
+<div *ngIf="items?.length == 0">
+  <p>No item</p>
+</div>

@@ -1,0 +1,20 @@
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+       <ng-container [ngTemplateOutlet]="testTmpl"></ng-container>
+    </div>
+    <div class="accordion-item">
+        <ng-container *ngTemplateOutlet="testTmpl"></ng-container>
+    </div>
+</div>
+
+<ng-template #testTmpl>
+    <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Accordion Item #15785
+        </button>
+    </h2>
+</ng-template>
+
+<div>------------------------------------------------------------------------------------</div>
+
+<app-tabs [tabs]="['Active','Link 1', 'Link 2']"></app-tabs>

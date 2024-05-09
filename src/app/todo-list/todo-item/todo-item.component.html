@@ -1,0 +1,11 @@
+<p>{{ user.name }} - {{ user.address }}</p>
+
+<p>{{ name }}</p>
+<input type="text" [(ngModel)]="name">
+
+
+<!-- 
+    <input type="text" [ngModel]="name" (ngModelChange)="name = $event">
+ 
+    `[(ngModel)]="name"`: là cách viết tắt của `[ngModel]="name" (ngModelChange)="name = $event"`
+-->
