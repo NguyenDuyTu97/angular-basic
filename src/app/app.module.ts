@@ -18,6 +18,10 @@ import { TabsComponent } from "./ng-template/tabs/tabs.component";
 import { ResizeComponent } from './resize/resize.component';
 import { ResizableDirective } from "./resize/resize.directive";
 import { ResizableDirective2 } from "./resize/resize.directive2";
+import { DependencyInjectionComponent } from './dependency-injection/dependency-injection.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule } from "@angular/material";
 
 @NgModule({
   imports: [
@@ -41,9 +45,18 @@ import { ResizableDirective2 } from "./resize/resize.directive2";
         path: "resize",
         component: ResizeComponent,
       },
+      {
+        path: "sign-in",
+        component: SignInComponent,
+      },
     ]),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule,
   ],
   declarations: [
     // bao gồm các component của module
@@ -59,9 +72,11 @@ import { ResizableDirective2 } from "./resize/resize.directive2";
     TabsComponent,
     ResizeComponent,
     ResizableDirective,
-    ResizableDirective2
+    ResizableDirective2,
+    DependencyInjectionComponent,
+    SignInComponent,
   ],
-  // providers:[], : bao gồm các service của module
+  providers:[], ///: bao gồm các service của module
   bootstrap: [AppComponent],
 })
 export class AppModule {}

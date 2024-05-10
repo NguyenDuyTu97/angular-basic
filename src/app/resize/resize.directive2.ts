@@ -62,12 +62,9 @@ export class ResizableDirective2 implements OnInit {
     // };
 
     const mouseUpG = (evt) => {
-
-        console.log(this.el.nativeElement.clientWidth,"this.el.nativeElement.clientWidth mouseUpG")
-        console.log("mouseUpG 333")
-
-        console.log(evt, "evt mouseUpG")
-
+      // console.log(this.el.nativeElement.clientWidth,"this.el.nativeElement.clientWidth mouseUpG")
+      // console.log("mouseUpG 333")
+      // console.log(evt, "evt mouseUpG")
 
       if (!this.dragging) {
         return;

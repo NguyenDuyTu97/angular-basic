@@ -14,6 +14,8 @@ export class ProductListComponent {
   @ViewChild('toggleComp',{static:false}) toggle: ToggleComponent
   @ViewChild('nameInput',{static:true}) nameInput: ElementRef<HTMLInputElement>
 
+  currentDate = new Date();
+
   products = products;
 
   user = {
