@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dependency-injection.component.css']
 })
 export class DependencyInjectionComponent implements OnInit {
-  checkCondition: boolean = false;
-
   constructor() { }
 
   ngOnInit() {

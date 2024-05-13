@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from "@angular/core";
 
 import { products } from "../products";
 import { ToggleComponent } from "../toggle/toggle.component";
+import { CartService } from '../cart.service';
 
 @Component({
   selector: "app-product-list",
@@ -15,8 +16,8 @@ export class ProductListComponent {
   @ViewChild('nameInput',{static:true}) nameInput: ElementRef<HTMLInputElement>
 
   currentDate = new Date();
-
   products = products;
+  isChecked = false
 
   user = {
     name: "Nguyen Van A",
@@ -24,7 +25,9 @@ export class ProductListComponent {
     address: "Ha Noi",
   };
 
-  isChecked = false
+  constructor(
+    private cartService: CartService,
+  ) {}
 
   share(name) {
     window.alert(`The product has been shared ${name}!`);
@@ -46,6 +49,13 @@ export class ProductListComponent {
 
   onChangeCheckedT(checked){
     this.isChecked = checked
+  }
+
+  addToCart(product) {
+
+    console.log(product, "product 1111")
+    window.alert("Your product has been added to the cart!");
+    this.cartService.addToCart(product);
   }
 }
 

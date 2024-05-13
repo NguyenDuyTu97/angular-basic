@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { CartService } from "../cart.service";
 import { FormBuilder } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { PostService } from "../services/post.service";
 
 @Component({
   selector: "app-cart",
@@ -13,9 +14,12 @@ export class CartComponent implements OnInit {
   checkoutForm = {};
   inputEnable = true;
   isWarning = false;
+  total = 0;
+  postMessage = "";
 
   constructor(
     private cartService: CartService,
+    private postService: PostService,
     private formBuilder: FormBuilder,
     private http: HttpClient
   ) {
@@ -27,6 +31,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.items = this.cartService.getItems();
+    this.postMessage = this.postService.checkMessageItems();
 
     // API Call
     let headers = new HttpHeaders({

@@ -22,6 +22,8 @@ import { DependencyInjectionComponent } from './dependency-injection/dependency-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule } from "@angular/material";
+import { TabPanelComponent } from "./dependency-injection/tab-panel/tab-panel.component";
+import { TabGroupComponent } from "./dependency-injection/tab-group/tab-group.component";
 
 @NgModule({
   imports: [
@@ -44,6 +46,10 @@ import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule 
       {
         path: "resize",
         component: ResizeComponent,
+      },
+      {
+        path: "dependency-injection",
+        component: DependencyInjectionComponent,
       },
       {
         path: "sign-in",
@@ -75,6 +81,8 @@ import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule 
     ResizableDirective2,
     DependencyInjectionComponent,
     SignInComponent,
+    TabPanelComponent,
+    TabGroupComponent
   ],
   providers:[], ///: bao gồm các service của module
   bootstrap: [AppComponent],

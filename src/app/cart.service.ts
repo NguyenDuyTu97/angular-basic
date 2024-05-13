@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
+import { CartExtService } from "./services/cart-extend.service";
 
 @Injectable({
   providedIn: "root",
+  // useClass: CartExtService,
 })
 export class CartService {
   items = [];

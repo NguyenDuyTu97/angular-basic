@@ -1,0 +1,69 @@
+<div class="tab-header">
+  <div
+    class="tab-item-header"
+    role="presentation"
+    *ngFor="let tab of tabPanelList; index as idx"
+    (click)="selectItem(idx)"
+  >
+    {{tab.title}}
+  </div>
+</div>
+
+<div class="tab-body">
+  <ng-container *ngFor="let tab of tabPanelList; index as idx">
+    <div *ngIf="idx === tabActiveIndex">
+      <ng-container *ngTemplateOutlet="tab.panelBody"></ng-container>
+    </div>
+  </ng-container>
+</div>
+
+
+<!-- Normal code
+  <ul class="nav nav-tabs">
+    <li *ngFor="let item of tabs; index as i">
+        <app-tab-panel [title]="item" [activeIndex]="activeIndex" [index]="i" (isActiveChange)="changeActiveIndex($event)" ></app-tab-panel>
+    </li>
+</ul>
+
+<div>
+    <p>{{ tabs[activeIndex] }}</p>
+</div>
+
+<div *ngIf="activeIndex === 1; else noPG13">Bạn có thể xem nội dung PG-13</div>
+<ng-template #noPG13>
+  <div>Bạn không thể xem nội dung PG-13</div>
+</ng-template>
+
+<ng-template #noPG14>
+    <div>Check ng-template 001</div>
+</ng-template>
+
+
+<div>
+    <ng-template
+    #buttonTmpl
+    let-label="label"
+    let-className="className"
+    let-icon="icon"
+    let-title
+  >
+    <button [ngClass]="['btn', className ? className : '']">
+      <i *ngIf="icon" class="fa {{icon}}"></i>
+      {{ label }} - {{ title }}
+    </button>
+  </ng-template>
+  
+  <ng-container
+    [ngTemplateOutlet]="buttonTmpl"
+    [ngTemplateOutletContext]="{label: 'Click me', $implicit: 'outlet context of primary button', className: 'btn-primary',  icon: null }"
+  >
+  </ng-container>
+  
+  <ng-container
+    [ngTemplateOutlet]="buttonTmpl"
+    [ngTemplateOutletContext]="{ label: 'Remove', className: 'btn-danger', icon: 'fa-remove', $implicit: 'template outlet context' }"
+  >
+  </ng-container>
+</div> -->
+
+

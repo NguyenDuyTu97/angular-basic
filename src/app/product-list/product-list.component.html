@@ -10,10 +10,13 @@
   <p *ngIf="product.description">Description: {{ product.description }}</p>
 
   <div>
-    <button (click)="share(product.name)">Share</button>
+    <button (click)="share(product.name)">Share</button> |
+    <button (click)="addToCart(product)">Add to cart</button>
   </div>
-  <app-product-alert [product1]="product" (notify)="onNotify($event)">
-  </app-product-alert>  
+
+  <!-- <app-product-alert [product1]="product" (notify)="onNotify($event)">
+  </app-product-alert>   -->
+
 </div>
 
 <div>
