@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>User</h2>
+<form #heroForm="ngForm" (ngSubmit)="onSubmit(heroForm)" >
+    <mat-dialog-content class="mat-typography">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                name="name"
+                required
+                [(ngModel)]="data.user.name"
+            >
+        </div>
+        <div class="form-group">
+            <label for="name">Gender</label>
+            <div>
+                <mat-form-field>
+                    <select matNativeControl required name="gender" [(ngModel)]="data.user.gender">
+                      <option [ngValue]="false">Female</option>
+                      <option [ngValue]="true">Male</option>
+                    </select>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <!-- <mat-dialog-actions>
+        <button mat-raised-button color="primary" type="submit">OK</button>
+        <button mat-button (click)="onCancel($event)">Cancel</button>
+    </mat-dialog-actions> -->
+</form>
+
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onSubmit(heroForm)">OK</button>
+    <button mat-button (click)="onCancel()">Cancel</button>
+</mat-dialog-actions>

@@ -1,0 +1,61 @@
+<div>
+    <h2>Users manage - {{ users.length }}</h2>
+    <div> <button mat-flat-button color="primary" mat-button (click)="openDialog({})">Add</button></div>
+
+    <div *ngIf="users.length > 0; else emptyTableBlock">
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="users">
+      
+          <!-- Id Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+          
+          <!-- gender Column -->
+          <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef> Gender </th>
+            <td mat-cell *matCellDef="let element">
+              <div *ngIf="element.gender; else elseBlock">Male</div>
+              <ng-template #elseBlock>Female</ng-template>
+            </td>
+          </ng-container>
+      
+          Avatar Column
+          <ng-container matColumnDef="avatar">
+            <th mat-header-cell *matHeaderCellDef> Avatar </th>
+            <td mat-cell *matCellDef="let element">{{element.avatar}} </td>
+          </ng-container>
+      
+          <!-- CreatedAt Column -->
+          <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef> Created At </th>
+            <td mat-cell *matCellDef="let element"> {{element.createdAt | date: 'dd/MM/yyyy HH:SS'}} </td>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-flat-button color="primary" (click)="openDialog(element)">Edit</button> | 
+                <button mat-flat-button color="warn" (click)="onDelete(element.id)">Delete</button>
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+    <ng-template #emptyTableBlock>No data</ng-template>
+
+
+    <!-- <ng-container *ngIf="isLoading">Loading ...</ng-container> -->
+</div>
+
