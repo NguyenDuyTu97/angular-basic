@@ -4,7 +4,7 @@ import { BrowserModule } from "@angular/platform-browser";
 
 import { HttpClientModule } from "@angular/common/http";
 
-import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatTableModule } from "@angular/material";
+import { MatButtonModule, MatCheckboxModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatTableModule } from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from "./app.component";
 import { CartComponent } from "./cart/cart.component";
@@ -29,6 +29,9 @@ import { ToggleComponent } from './toggle/toggle.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
+import { DragDropModule } from "@angular/cdk/drag-drop";
+import { DragDropTestComponent } from './drag-drop-test/drag-drop-test.component';
 
 
 @NgModule({
@@ -50,6 +53,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatDialogModule,
 
     AppRoutingModule,
+
+    DragDropModule,
+    MatExpansionModule
   ],
   declarations: [
     // bao gồm các component của module
@@ -72,7 +78,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     TabGroupComponent,
     RxjsComponent,
     AddOrUpdateModalComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DragAndDropComponent,
+    DragDropTestComponent
   ],
   providers:[], ///: bao gồm các service của module
   bootstrap: [AppComponent],

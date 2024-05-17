@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TabsComponent implements OnInit {
 
-    @Input() tabs=[]
+  @Input() tabs=[]
 
   constructor() { }
 

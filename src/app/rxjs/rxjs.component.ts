@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserService } from '../services/user.service';
 import { AddOrUpdateModalComponent } from './add-or-update-modal/add-or-update-modal.component';
 import { User } from 'src/constants/user';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-rxjs',

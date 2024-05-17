@@ -1,0 +1,78 @@
+<div>
+  <div class="example-container">
+    
+    <h2>To do</h2>
+
+    <!-- item types -->
+    <div
+      cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="todo"
+      [cdkDropListConnectedTo]="[doneList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item.name}}</div>
+    </div>
+
+    <br/>
+
+    <!-- table fields -->
+    <div
+        cdkDropList
+        #tableFieldsList="cdkDropList"
+        [cdkDropListData]="tableFields"
+        [cdkDropListConnectedTo]="[filterList]"
+        class="example-list"
+        (cdkDropListDropped)="dropFilter($event)"
+    >
+        <div class="example-box" *ngFor="let item of tableFields" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+
+  <div class="example-container">
+    <h2>Done</h2>
+
+    <!-- item config -->
+    <div
+      cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="example-box" *ngFor="let item of done; index as i" cdkDrag>
+        {{item.name}} {{ i }}
+        <button (click)="onRemove(item,i)">X</button>
+        <button (click)="onCopy(item,i)">Copy</button>
+
+        <div 
+            [id]="i"
+            cdkDropList 
+            #test="cdkDropList"
+            [cdkDropListConnectedTo]="[todoList]"
+            [cdkDropListData]="item.filters" 
+            class="nested-list"
+            (cdkDropListDropped)="dropFilter($event)"
+            style="border:  1px solid;"
+        >
+            <div class="example-box" *ngFor="let child of item.filters" cdkDrag>{{child.title}}</div>
+        </div>
+
+        <!-- filter config -->
+        <!-- <div
+            cdkDropList
+            #filtersList="cdkDropList"
+            [cdkDropListData]="filters"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)"
+            >
+            <div class="example-box" *ngFor="let item of filters; index as i" cdkDrag>
+                {{item}} 
+                <button (click)="onRemove(item,i)">X</button>
+            </div> -->
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>

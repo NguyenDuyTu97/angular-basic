@@ -9,6 +9,8 @@ import { DependencyInjectionComponent } from './dependency-injection/dependency-
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
+import { DragDropTestComponent } from './drag-drop-test/drag-drop-test.component';
 
 const appRoutes: Routes = [
   {
@@ -36,6 +38,14 @@ const appRoutes: Routes = [
     component: RxjsComponent,
   },
   {
+    path: "drag-and-drop",
+    component: DragAndDropComponent,
+  },
+  {
+    path: "drag-and-drop-test",
+    component: DragDropTestComponent,
+  },
+  {
     path: "sign-in",
     component: SignInComponent,
   },
@@ -49,7 +59,7 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      // { enableTracing: true } // <-- debugging purposes only
     )
   ],
   exports: [
