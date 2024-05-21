@@ -42,14 +42,10 @@ export class CartComponent implements OnInit {
       .get<any>("https://jsonplaceholder.typicode.com/todos", {
         headers: headers,
       })
-      .subscribe((data) => {
-        // console.log(data);
-      });
+      .subscribe((data) => {});
   }
 
   logInputValue(value: string) {
-    console.log(value);
-
     this.inputEnable = !this.inputEnable;
   }
 

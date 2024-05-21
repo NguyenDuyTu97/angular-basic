@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from '../services/user.service';
 import { AddOrUpdateModalComponent } from './add-or-update-modal/add-or-update-modal.component';
@@ -23,6 +23,7 @@ export class RxjsComponent implements OnInit {
 
   isLoading: boolean = false;
 
+  @ViewChild('openModalButton', { static: true }) openModalButton;
 
   constructor(
     public dialog: MatDialog,
@@ -51,11 +52,17 @@ export class RxjsComponent implements OnInit {
       userInit =  {...editData};
     }
 
-    const dialogRef = this.dialog.open(AddOrUpdateModalComponent, {data: { user: userInit }});
+    const buttonRect = this.openModalButton._elementRef.nativeElement.getBoundingClientRect();
+    const dialogRef = this.dialog.open(AddOrUpdateModalComponent, {
+      position: {
+        top: `${buttonRect.bottom + window.scrollY}px`,
+        left: `${buttonRect.left + window.scrollX}px`
+      },
+      width: '300px', // Adjust the width as needed
+      data: { user: userInit }},
+    );
 
     dialogRef.afterClosed().subscribe(res => {
-      console.log(res, "res after closed")
-
       if(!res) return;
 
       if(!editData.id){

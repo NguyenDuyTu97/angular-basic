@@ -33,6 +33,8 @@ import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { DragDropTestComponent } from './drag-drop-test/drag-drop-test.component';
 
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 @NgModule({
   imports: [
@@ -55,7 +57,9 @@ import { DragDropTestComponent } from './drag-drop-test/drag-drop-test.component
     AppRoutingModule,
 
     DragDropModule,
-    MatExpansionModule
+    MatExpansionModule,
+    
+    MatTooltipModule,
   ],
   declarations: [
     // bao gồm các component của module

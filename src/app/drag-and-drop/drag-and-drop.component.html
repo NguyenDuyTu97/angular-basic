@@ -22,11 +22,11 @@
         cdkDropList
         #tableFieldsList="cdkDropList"
         [cdkDropListData]="tableFields"
-        [cdkDropListConnectedTo]="[filterList]"
+        [cdkDropListConnectedTo]="dls"
         class="example-list"
         (cdkDropListDropped)="dropFilter($event)"
     >
-        <div class="example-box" *ngFor="let item of tableFields" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let item of tableFields" cdkDrag>{{item.title}}</div>
     </div>
   </div>
 
@@ -41,38 +41,69 @@
       class="example-list"
       (cdkDropListDropped)="drop($event)"
     >
-      <div class="example-box" *ngFor="let item of done; index as i" cdkDrag>
+      <div class="example-box" *ngFor="let item of done; index as idx" cdkDrag>
         {{item.name}} {{ i }}
         <button (click)="onRemove(item,i)">X</button>
         <button (click)="onCopy(item,i)">Copy</button>
 
         <div 
-            [id]="i"
-            cdkDropList 
-            #test="cdkDropList"
-            [cdkDropListConnectedTo]="[todoList]"
-            [cdkDropListData]="item.filters" 
-            class="nested-list"
-            (cdkDropListDropped)="dropFilter($event)"
-            style="border:  1px solid;"
-        >
-            <div class="example-box" *ngFor="let child of item.filters" cdkDrag>{{child.title}}</div>
-        </div>
-
-        <!-- filter config -->
-        <!-- <div
             cdkDropList
-            #filtersList="cdkDropList"
-            [cdkDropListData]="filters"
-            class="example-list"
-            (cdkDropListDropped)="drop($event)"
-            >
-            <div class="example-box" *ngFor="let item of filters; index as i" cdkDrag>
-                {{item}} 
-                <button (click)="onRemove(item,i)">X</button>
-            </div> -->
-        <!-- </div> -->
+            [attr.id]="idx"
+            [cdkDropListData]="item.filters" 
+            (cdkDropListDropped)="dropFilter($event)"
+            class="filter-list"
+        > 
+            <div *ngFor="let child of item.filters; index as childrenIdx" class="filter-item" cdkDrag>
+              <div *ngIf="child.type == 'DATE'">
+                <ng-container *ngTemplateOutlet="tDate; context: { child: child, idx: idx, childrenIdx: childrenIdx }"></ng-container>
+              </div>
+
+              <div *ngIf="child.type == 'SELECT'">
+                <ng-container *ngTemplateOutlet="tSelect; context: { child: child, idx: idx, childrenIdx: childrenIdx }"></ng-container>
+              </div>
+
+              <div *ngIf="child.type == 'STRING'">
+                <ng-container *ngTemplateOutlet="tString; context: { child: child, idx: idx, childrenIdx: childrenIdx }"></ng-container>
+              </div>   
+              
+              <button (click)="onRemoveChildItem(idx, childrenIdx)">x</button>
+            </div> 
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- If Statement -->
+  <ng-template #tDate let-title1="child" let-type="type" let-idx="idx" let-childrenIdx="childrenIdx">
+    <div
+      matTooltip="Date"
+      aria-tooltip="Button that displays and hides a tooltip triggered by other buttons"
+    >
+      {{ title1.title }} - {{ idx }} - {{ childrenIdx }}
+     
+    </div>
+  </ng-template>
+  <!-- If Else Statement -->
+  <ng-template #tSelect let-title2="child" let-type="type" let-idx="idx" let-childrenIdx="childrenIdx">
+    <div
+      matTooltip="Select"
+      aria-tooltip="Button that displays and hides a tooltip triggered by other buttons"
+    >
+    {{ title2.title }} - {{ idx }} - {{ childrenIdx }}
+    </div>
+  </ng-template>
+  <!-- Else Statement -->
+  <ng-template #tString let-title3="child" let-type="type" let-idx="idx" let-childrenIdx="childrenIdx">
+    <div
+      matTooltip="String"
+      aria-tooltip="Button that displays and hides a tooltip triggered by other buttons"
+    >
+    {{ title3.title }} - {{ idx }} - {{ childrenIdx }}
+    </div>
+  </ng-template>
+
+  <button (click)="onSave()">Click me</button>
 </div>
+
+<!-- [matTooltip]="tooltipTemplate" -->
+

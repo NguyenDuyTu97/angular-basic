@@ -18,13 +18,9 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    console.log("ngOnInit");
-  }
+  ngOnInit() {}
 
-  onAdd(eventObj) {
-    console.log(eventObj, "event object");
-
+  onAdd() {
     this.showForm = true;
   }
 
@@ -45,8 +41,6 @@ export class TodoListComponent implements OnInit {
   }
 
   onKey(event: any) {
-    console.log(event, "event 11223");
-
     // without type info
     this.inputValue += event.target.value + " | ";
   }

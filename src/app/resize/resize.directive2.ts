@@ -18,9 +18,6 @@ export class ResizableDirective2 implements OnInit {
   constructor(private el: ElementRef) {
     this.div1With = this.el.nativeElement.clientWidth;
 
-    console.log(this.div1With,"this.div1With 11223")
-    
-
     const self = this;
 
     const EventListenerMode = { capture: true };
@@ -41,10 +38,6 @@ export class ResizableDirective2 implements OnInit {
 
 
     const mouseMoveG = (evt) => {
-        // console.log("mouseMoveG 444")
-
-        // console.log(evt, "evt mouseMoveG")
-
       if (!this.dragging) {
         return;
       }
@@ -62,10 +55,6 @@ export class ResizableDirective2 implements OnInit {
     // };
 
     const mouseUpG = (evt) => {
-      // console.log(this.el.nativeElement.clientWidth,"this.el.nativeElement.clientWidth mouseUpG")
-      // console.log("mouseUpG 333")
-      // console.log(evt, "evt mouseUpG")
-
       if (!this.dragging) {
         return;
       }
@@ -76,27 +65,17 @@ export class ResizableDirective2 implements OnInit {
 
     const mouseDown = (evt) => {
       if (this.inDragRegion(evt)) {
-
-        console.log("mouseDown if 11")
-       
-
         this.dragging = true;
         preventGlobalMouseEvents();
         evt.stopPropagation();
       }
-
-      console.log("mouseDown else 22")
     };
 
 
     const mouseMove = (evt) => {
       if (this.inDragRegion(evt) || this.dragging) {
-        console.log("mouseMove if")
-
         el.nativeElement.style.cursor = "col-resize";
       } else {
-        console.log("mouseMove else")
-
         el.nativeElement.style.cursor = "default";
       }
     }
@@ -113,10 +92,6 @@ export class ResizableDirective2 implements OnInit {
   }
 
   inDragRegion(evt) {
-
-    console.log(this.el.nativeElement.clientWidth,"this.el.nativeElement.clientWidth 11")
-    console.log(evt, "evt 5555555555")
-
     return this.el.nativeElement.clientWidth - evt.clientX + this.el.nativeElement.offsetLeft < this.resizableGrabWidth;
   }
 

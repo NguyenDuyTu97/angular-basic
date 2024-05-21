@@ -76,7 +76,6 @@ export class ResizableDirective implements OnInit {
       }
     }
 
-
     document.addEventListener('mousemove', mouseMoveG, true);
     document.addEventListener('mouseup', mouseUpG, true);
     el.nativeElement.addEventListener('mousedown', mouseDown, true);
@@ -88,11 +87,6 @@ export class ResizableDirective implements OnInit {
   }
 
   inDragRegion(evt) {
-
-    // console.log(this.el.nativeElement.clientWidth,"this.el.nativeElement.clientWidth")
-    // console.log(evt.clientX,"evt.clientX")
-    // console.log(this.el.nativeElement.offsetLeft,"this.el.nativeElement.offsetLeft")
-
     return this.el.nativeElement.clientWidth - evt.clientX + this.el.nativeElement.offsetLeft < this.resizableGrabWidth;
   }
 

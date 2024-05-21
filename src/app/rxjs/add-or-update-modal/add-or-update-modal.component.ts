@@ -13,12 +13,9 @@ export class AddOrUpdateModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  ngOnInit() {
-    console.log(this.dialogRef, "this dialog ref 1")
-  }
+  ngOnInit() {}
 
   onSubmit(form){
-    console.log(form, 'form submit')
     if(!form || !form.value.name) return;
 
     this.dialogRef.close({ data: form.value })

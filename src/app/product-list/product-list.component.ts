@@ -34,26 +34,20 @@ export class ProductListComponent {
   }
 
   onNotify(value) {
-    console.log(value, "value 0000");
     window.alert("You will be notified when the product goes on sale");
   }
 
   ngOnInit(){
     // this.nameInput.nativeElement.focus()
-    console.log(this.nameInput, "this nameInput in ngOnInit")
   }
 
-  ngAfterViewInit(){
-    console.log(this.toggle, "this toggle in ngAfterViewInit")
-  }
+  ngAfterViewInit(){}
 
   onChangeCheckedT(checked){
     this.isChecked = checked
   }
 
   addToCart(product) {
-
-    console.log(product, "product 1111")
     window.alert("Your product has been added to the cart!");
     this.cartService.addToCart(product);
   }

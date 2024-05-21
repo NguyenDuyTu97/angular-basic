@@ -1,7 +1,7 @@
 <div>
     <h2>Users manage - {{ users.length }}</h2>
-    <div> <button mat-flat-button color="primary" mat-button (click)="openDialog({})">Add</button></div>
-
+    <button #openModalButton mat-raised-button color="primary" (click)="openDialog({})">Add</button>
+    
     <div *ngIf="users.length > 0; else emptyTableBlock">
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="users">

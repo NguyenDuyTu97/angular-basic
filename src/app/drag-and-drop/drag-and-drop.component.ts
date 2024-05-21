@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { ChangeDetectorRef, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import {CdkDragDrop, CdkDropList, copyArrayItem, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-drag-and-drop',
@@ -8,68 +8,58 @@ import {CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem} from '@a
 })
 export class DragAndDropComponent implements OnInit {
   todo = [
-    { name: 'Get to work', 
-      filters: [
-        {uuid: '1212',title:'Chi tieu'},
-        {uuid: '1213',title:'Chi tieu 1'},
-      ] 
-    },
-    { name: 'Pick up groceries', filters: [] },
-    { name: 'Go home', filters: [] },
-    { name: 'Fall asleep', filters: [] },
+    { name: 'Line', filters: [] },
+    { name: 'Line kế hoạch', filters: [] },
   ];
 
   tableFields = [
-    'Thời gian',
-    'Cấp dữ liệu',
-    'Tên chỉ tiêu'
+    {title:'Thời gian', type: 'DATE'},
+    {title:'Cấp dữ liệu', type: 'SELECT'},
+    {title:'Tên chỉ tiêu', type: 'STRING'},
   ]
 
   done = [
-    // { name: '', filters: [] }
+    // { name: 'Get to work', filters: ['Thời gian', 'Tên chỉ tiêu'] },
   ];
 
-  constructor() { }
+
+  // isDone=true;
+
+  @ViewChildren(CdkDropList)
+  private dlq: QueryList<CdkDropList>;
+
+  public dls: CdkDropList[] = [];
+
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
   }
-  
+
   drop(event: CdkDragDrop<string[]>) {
-
-    console.log(event.previousContainer,"event.previousContainer 1")
-    console.log(event.container,"event.container 1")
-
-    if (event.previousContainer === event.container) { // di chuyển item trong cùng 1 container
-
-      console.log("if 11111111")
-
+    if (event.previousContainer === event.container) { 
+      // di chuyển item trong cùng 1 container
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else { // di chuyển item sang container khác
+    } else { 
+      // Chuyển đổi giữa các container
+      const itemCopy = JSON.parse(JSON.stringify(event.previousContainer.data[event.previousIndex]));  // Tạo bản sao sâu
       copyArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex)
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+      // Đảm bảo rằng bản sao được chèn vào mảng đích
+      event.container.data[event.currentIndex] = itemCopy;
     }
   }
 
   dropFilter(event: CdkDragDrop<string[]>) {
-    console.log(event.previousContainer,"event.previousContainer.data");
-    console.log(event.container,"event.container.data ")
-
-    if (event.previousContainer === event.container) {
-      console.log("the same container 1")
-
-      // moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      // console.log(event.previousContainer.data,"event.previousContainer.data");
-      // console.log(event.container.data,"event.container.data ")
-
-      console.log("else table fields")
-
-      copyArrayItem(event.previousContainer.data,
+    if (event.previousContainer === event.container) {} 
+    else {
+      copyArrayItem(
+        event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex)
+        event.currentIndex
+      );
     }
   }
 
@@ -78,6 +68,30 @@ export class DragAndDropComponent implements OnInit {
   }
 
   onCopy(item, index){
-    this.done.splice(index, 0, item);
+    const itemCopy = JSON.parse(JSON.stringify(item));  // Tạo bản sao sâu
+    this.done.splice(index, 0, itemCopy);
   }
+
+  // child item
+  onRemoveChildItem(idx, childrenIdx){
+    if(idx >=0)
+      this.done[idx].filters.splice(childrenIdx, 1)
+  }
+
+  ngAfterViewChecked(){
+    if(this.dlq){
+      // this.cdr.detectChanges();  
+      const ldls: CdkDropList[] = [];
+
+      this.dlq.forEach((dl, index) => {
+        if(index !== 0 && index !== 1 && index !== 2)
+          ldls.push(dl)
+      });
+
+      this.dls = ldls;
+      this.cdr.detectChanges(); // Chạy detectChanges sau khi cập nhật connectedTo
+    }
+  }
+
+  onSave(){}
 }
