@@ -1,6 +1,5 @@
 <div>
   <div class="example-container">
-    
     <h2>To do</h2>
 
     <!-- item types -->
@@ -12,21 +11,25 @@
       class="example-list"
       (cdkDropListDropped)="drop($event)"
     >
-      <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item.name}}</div>
+      <div class="example-box" *ngFor="let item of todo" cdkDrag>
+        {{ item.name }}
+      </div>
     </div>
 
-    <br/>
+    <br />
 
     <!-- table fields -->
     <div
-        cdkDropList
-        #tableFieldsList="cdkDropList"
-        [cdkDropListData]="tableFields"
-        [cdkDropListConnectedTo]="dls"
-        class="example-list"
-        (cdkDropListDropped)="dropFilter($event)"
+      cdkDropList
+      #tableFieldsList="cdkDropList"
+      [cdkDropListData]="tableFields"
+      [cdkDropListConnectedTo]="dls"
+      class="example-list"
+      (cdkDropListDropped)="dropFilter($event)"
     >
-        <div class="example-box" *ngFor="let item of tableFields" cdkDrag>{{item.title}}</div>
+      <div class="example-box" *ngFor="let item of tableFields" cdkDrag>
+        {{ item.title }}
+      </div>
     </div>
   </div>
 
@@ -42,68 +45,103 @@
       (cdkDropListDropped)="drop($event)"
     >
       <div class="example-box" *ngFor="let item of done; index as idx" cdkDrag>
-        {{item.name}} {{ i }}
-        <button (click)="onRemove(item,i)">X</button>
-        <button (click)="onCopy(item,i)">Copy</button>
+        {{ item.name }} {{ idx }}
+        <button (click)="onRemove(item, idx)">X</button>
+        <button (click)="onCopy(item, idx)">Copy</button>
 
-        <div 
-            cdkDropList
-            [attr.id]="idx"
-            [cdkDropListData]="item.filters" 
-            (cdkDropListDropped)="dropFilter($event)"
-            class="filter-list"
-        > 
-            <div *ngFor="let child of item.filters; index as childrenIdx" class="filter-item" cdkDrag>
-              <div *ngIf="child.type == 'DATE'">
-                <ng-container *ngTemplateOutlet="tDate; context: { child: child, idx: idx, childrenIdx: childrenIdx }"></ng-container>
-              </div>
+        <div
+          cdkDropList
+          [attr.id]="idx"
+          [cdkDropListData]="item.filters"
+          (cdkDropListDropped)="dropFilter($event)"
+          class="filter-list"
+        >
+          <div
+            *ngFor="let child of item.filters; index as childrenIdx"
+            class="filter-item"
+            cdkDrag
+          >
+            <div *ngIf="child.type == 'DATE'">
+              <ng-container
+                *ngTemplateOutlet="
+                  tDate;
+                  context: { child: child, idx: idx, childrenIdx: childrenIdx }
+                "
+              ></ng-container>
+            </div>
 
-              <div *ngIf="child.type == 'SELECT'">
-                <ng-container *ngTemplateOutlet="tSelect; context: { child: child, idx: idx, childrenIdx: childrenIdx }"></ng-container>
-              </div>
+            <div *ngIf="child.type == 'SELECT'">
+              <ng-container
+                *ngTemplateOutlet="
+                  tSelect;
+                  context: { child: child, idx: idx, childrenIdx: childrenIdx }
+                "
+              ></ng-container>
+            </div>
 
-              <div *ngIf="child.type == 'STRING'">
-                <ng-container *ngTemplateOutlet="tString; context: { child: child, idx: idx, childrenIdx: childrenIdx }"></ng-container>
-              </div>   
-              
-              <button (click)="onRemoveChildItem(idx, childrenIdx)">x</button>
-            </div> 
+            <div *ngIf="child.type == 'STRING'">
+              <ng-container
+                *ngTemplateOutlet="
+                  tString;
+                  context: { child: child, idx: idx, childrenIdx: childrenIdx }
+                "
+              ></ng-container>
+            </div>
+
+            <button (click)="onRemoveChildItem(idx, childrenIdx)">x</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- If Statement -->
-  <ng-template #tDate let-title1="child" let-type="type" let-idx="idx" let-childrenIdx="childrenIdx">
+  <ng-template
+    #tDate
+    let-title1="child"
+    let-type="type"
+    let-idx="idx"
+    let-childrenIdx="childrenIdx"
+  >
     <div
       matTooltip="Date"
       aria-tooltip="Button that displays and hides a tooltip triggered by other buttons"
     >
       {{ title1.title }} - {{ idx }} - {{ childrenIdx }}
-     
     </div>
   </ng-template>
   <!-- If Else Statement -->
-  <ng-template #tSelect let-title2="child" let-type="type" let-idx="idx" let-childrenIdx="childrenIdx">
+  <ng-template
+    #tSelect
+    let-title2="child"
+    let-type="type"
+    let-idx="idx"
+    let-childrenIdx="childrenIdx"
+  >
     <div
       matTooltip="Select"
       aria-tooltip="Button that displays and hides a tooltip triggered by other buttons"
     >
-    {{ title2.title }} - {{ idx }} - {{ childrenIdx }}
+      {{ title2.title }} - {{ idx }} - {{ childrenIdx }}
     </div>
   </ng-template>
   <!-- Else Statement -->
-  <ng-template #tString let-title3="child" let-type="type" let-idx="idx" let-childrenIdx="childrenIdx">
+  <ng-template
+    #tString
+    let-title3="child"
+    let-type="type"
+    let-idx="idx"
+    let-childrenIdx="childrenIdx"
+  >
     <div
       matTooltip="String"
       aria-tooltip="Button that displays and hides a tooltip triggered by other buttons"
     >
-    {{ title3.title }} - {{ idx }} - {{ childrenIdx }}
+      {{ title3.title }} - {{ idx }} - {{ childrenIdx }}
     </div>
   </ng-template>
 
-  <button (click)="onSave()">Click me</button>
+  <!-- <button (click)="onSave()">Click me</button> -->
 </div>
 
 <!-- [matTooltip]="tooltipTemplate" -->
-

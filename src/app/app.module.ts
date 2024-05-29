@@ -26,14 +26,13 @@ import { TodoItemComponent } from './todo-list/todo-item/todo-item.component';
 import { TodoListComponent } from "./todo-list/todo-list.component";
 import { ToggleComponent } from './toggle/toggle.component';
 
+import { DragDropModule } from "@angular/cdk/drag-drop";
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
-import { DragDropModule } from "@angular/cdk/drag-drop";
-import { DragDropTestComponent } from './drag-drop-test/drag-drop-test.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -83,8 +82,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     RxjsComponent,
     AddOrUpdateModalComponent,
     PageNotFoundComponent,
-    DragAndDropComponent,
-    DragDropTestComponent
+    DragAndDropComponent
   ],
   providers:[], ///: bao gồm các service của module
   bootstrap: [AppComponent],

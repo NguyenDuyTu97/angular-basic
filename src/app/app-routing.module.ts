@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductListComponent } from './product-list/product-list.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CartComponent } from './cart/cart.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { ResizeComponent } from './resize/resize.component';
 import { DependencyInjectionComponent } from './dependency-injection/dependency-injection.component';
+import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ResizeComponent } from './resize/resize.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
-import { DragDropTestComponent } from './drag-drop-test/drag-drop-test.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 const appRoutes: Routes = [
   {
@@ -42,15 +41,17 @@ const appRoutes: Routes = [
     component: DragAndDropComponent,
   },
   {
-    path: "drag-and-drop-test",
-    component: DragDropTestComponent,
-  },
-  {
     path: "sign-in",
     component: SignInComponent,
   },
-  { path: "", component: ProductListComponent },
-  { path: "**", component: PageNotFoundComponent }
+  { 
+    path: "",
+    component: ProductListComponent 
+  },
+  {
+    path: "**",
+    component: PageNotFoundComponent 
+  }
 ];
 
 
